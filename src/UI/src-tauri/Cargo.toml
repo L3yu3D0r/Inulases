@@ -1,0 +1,33 @@
+[package]
+name = "InulasesUI"
+version = "0.0.1"
+description = "InulasesUI"
+authors = ["L3yu3D0r"]
+license = ""
+repository = ""
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1", features = [] }
+
+[dependencies]
+tauri = { version = "1", features = ["shell-open"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.dev]
+incremental = true # 以较小的步骤编译您的二进制文件。
+
+[profile.release]
+codegen-units = 1 # 允许 LLVM 执行更好的优化。
+lto = true # 启用链接时优化。
+opt-level = "s" # 优先考虑小的二进制文件大小。如果您更喜欢速度，请使用 `3`。
+panic = "abort" # 通过禁用 panic 处理程序来提高性能。
+strip = true # 确保移除调试符号。
