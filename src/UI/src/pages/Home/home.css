@@ -5,9 +5,31 @@
 .logo.preact:hover {
   filter: drop-shadow(0 0 2em #673ab8);
 }
-#toolbar {
+
+@font-face {
+  font-family: "MapleMono-Regular";
+  src: url("../../../public/MapleMono-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  font-family: 'MapleMono-Regular', sans-serif;
+}
+
+#toolbardiv {
+  font-family: 'MapleMono-Regular', sans-serif;
   width: 100%;
-  min-height: 40px;
-  max-height: 4%;
-  background-color: #330;
+  height: 32px;
+  background-color: white;
+}
+
+#toolbar td {
+  border: 1px solid #330;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+#toolbar-logo img {
+  max-height: 20px;
 }
