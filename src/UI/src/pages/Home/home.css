@@ -5,3 +5,9 @@
 .logo.preact:hover {
   filter: drop-shadow(0 0 2em #673ab8);
 }
+#toolbar {
+  width: 100%;
+  min-height: 40px;
+  max-height: 4%;
+  background-color: #330;
+}
