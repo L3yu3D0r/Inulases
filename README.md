@@ -1,4 +1,4 @@
 # Inulases
 
 > [!WARNING]
-> This project is under development.
+> This project is under development. Do not use it until its version 1.0.0 is released.
