@@ -1,4 +1,4 @@
 # Inulases
 
-> **Warning**
+> [!WARNING]
 > This project is under development.
