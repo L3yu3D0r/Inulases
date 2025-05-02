@@ -1,0 +1,7 @@
+{
+    "language_configs" : {
+        "langauge_elements_id" : ["toolbar-file", "toolbar-edit"],
+        "toolbar-file": "File",
+        "toolbar-edit": "Edit"
+    }
+}
