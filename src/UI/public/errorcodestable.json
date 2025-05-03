@@ -1,0 +1,10 @@
+{
+    "T000001": "Cannot Get The Element",
+    "T000002": "Cannot Load Resources(Image)",
+    "T000003": "Config File Error(In Item \"Language\"",
+    "T999999": "Unknown Error of T",
+    "R000001": "Failed to read configInside.json",
+    "R000002": "Failed to parse configInside.json as JSON",
+    "R000003": "Config path must be a string",
+    "R000004": "Failed to read config file from specified path"
+}

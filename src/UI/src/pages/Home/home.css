@@ -33,3 +33,16 @@
 #toolbar-logo img {
   max-height: 20px;
 }
+
+.menuA {
+  border: 1px solid #330;
+  background-color: white;
+  display: inline-block;
+  position: absolute;
+  top:32px;
+  left: var(--classmenuAleftpx);
+}
+
+.menuF {
+  float: right;
+}

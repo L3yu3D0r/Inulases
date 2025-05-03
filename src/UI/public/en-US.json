@@ -1,4 +1,12 @@
 {
     "File": "File",
-    "Edit": "Edit"
+    "Edit": "Edit",
+    "toolbar-file-select-new": "New File",
+    "NewWindow": "New Window",
+    "OpenFile": "Open File",
+    "OpenFolder": "Open Folder",
+    "SaveFile": "Save Current File",
+    "SaveAs": "Save As",
+    "SaveProject": "Save Project",
+    "AutomaticSave": "Automatic Save"
 }

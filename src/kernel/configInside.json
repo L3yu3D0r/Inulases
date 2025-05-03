@@ -1,7 +1,27 @@
 {
-    "language_configs" : {
-        "langauge_elements_id" : ["toolbar-file", "toolbar-edit"],
-        "toolbar-file": "File",
-        "toolbar-edit": "Edit"
-    }
+  "configfileposition": "../../kernel/configInside.json",
+  "language_configs": {
+    "langauge_elements_id": [
+      "toolbar-file",
+      "toolbar-edit",
+      "toolbar-file-select-new",
+      "toolbar-file-new-window",
+      "toolbar-file-open-file",
+      "toolbar_file_open_folder",
+      "toolbar_file_save_file",
+      "toolbar_file_save_as",
+      "toolbar_file_save_project",
+      "toolbar_file_option_automatic_save"
+    ],
+    "toolbar-edit": "Edit",
+    "toolbar-file": "File",
+    "toolbar-file-new-window": "NewWindow",
+    "toolbar-file-open-file": "OpenFile",
+    "toolbar-file-select-new": "toolbar-file-select-new",
+    "toolbar_file_open_folder": "OpenFolder",
+    "toolbar_file_option_automatic_save": "AutomaticSave",
+    "toolbar_file_save_as": "SaveAs",
+    "toolbar_file_save_file": "SaveFile",
+    "toolbar_file_save_project": "SaveProject"
+  }
 }

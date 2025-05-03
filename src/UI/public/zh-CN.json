@@ -1,4 +1,12 @@
 {
     "File": "文件",
-    "Edit": "编辑"
+    "Edit": "编辑",
+    "toolbar-file-select-new": "新建文件",
+    "NewWindow": "新建窗口",
+    "OpenFile": "打开文件",
+    "OpenFolder": "打开文件夹",
+    "SaveFile": "保存当前文件",
+    "SaveAs": "另存为",
+    "SaveProject": "保存项目",
+    "AutomaticSave": "自动保存"
 }

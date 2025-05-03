@@ -1,8 +1,8 @@
+import { message } from "@tauri-apps/plugin-dialog";
 import zh_cnLPr from "../../../public/zh-CN.json";
 import en_usLPr from "../../../public/en-US.json";
-import { message } from "@tauri-apps/api/dialog";
-import { invoke } from "@tauri-apps/api/tauri";
-import { exit } from "@tauri-apps/api/process";
+import { exit } from "@tauri-apps/plugin-process";
+import { invoke } from "@tauri-apps/api/core";
 import { useEffect } from "preact/hooks";
 import "./home.css";
 
@@ -34,37 +34,94 @@ export function Home() {
     return JSON.parse(await invoke("get_configs_inside"));
   }
 
+  function change_configs(key: string, value: any) {
+    invoke("change_configs", { key: key, value: value });
+  }
+
+  var configs: Promise<ConfigType> = get_configs();
+  var configsInside: Promise<ConfigTypeB> = get_configsInside();
+
   function ECT(eca: number): string {
     switch (eca) {
       case 1:
-        return ("code: 000001: Cannot Get The Element");
+        return ("code: T000001: Cannot Get The Element");
       case 2:
-        return ("code: 000002: Cannot Load Resources(Image)");
+        return ("code: T000002: Cannot Load Resources(Image)");
       case 3:
-        return "code: 000003: Config File Error(In Item \"Language\")";
-      case 330:
-        return "code: 000330: 330 is Watching You";
-      case 330330:
-        return "code: 330330: 330 is Watching You Too";
+        return "code: T000003: Config File Error(In Item \"Language\")";
       default:
-        return "code: 999999: Unknown Error";
+        return "code: T999999: Unknown Error of T";
     };
   }
 
   async function throwError(ec: number) {
-    await message(ECT(ec).toString(), { title: "InulasesUI Error", type: "error" });
+    await message(ECT(ec).toString(), { title: "InulasesUI Error", kind: "error" });
     exit(1);
   }
 
   function toolbar_file_onclick() {
-    
+    document.documentElement.style.setProperty("--classmenuAleftpx",
+      document.getElementById("toolbar-file")?.getBoundingClientRect().left + "px"
+    );
+    document.getElementById("toolbar-file-menu")!.style.display = "block";
+  }
+
+  function toolbar_file_onblur() {
+    setTimeout(() => {
+      document.getElementById("toolbar-file-menu")!.style.display = "none";
+    }, 330);
+  }
+
+  function toolbar_file_select_new_file_onclick() {
+    // invoke("new_file");
+    message("New File", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_new_window_onclick() {
+    // invoke("new_window");
+    message("New Window", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_open_file() {
+    // invoke("open_file");
+    message("Open File", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_open_folder() {
+    // invoke("open_folder");
+    message("Open Folder", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_save_file() {
+    // invoke("save_file");
+    message("Save File", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_save_as() {
+    // invoke("save_as");
+    message("Save As", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_save_project() {
+    // invoke("save_project");
+    message("Save Project", { title: "InulasesUI", kind: "info" });
+  }
+
+  function toolbar_file_option_automatic_save() {
+    var atmksave_mark = document.getElementById("toolbar_file_option_automatic_save_mark")!;
+    if (atmksave_mark.innerHTML == "") {
+      atmksave_mark.innerHTML = "✓";
+      change_configs("automatic_save", true);
+    } else {
+      atmksave_mark.innerHTML = "";
+      change_configs("automatic_save", false);
+    }
+    // invoke("option_automatic_save");
   }
 
   function init() {
     var zh_cnLP: LanguagePackage = zh_cnLPr;
     var en_usLP: LanguagePackage = en_usLPr;
-    var configs: Promise<ConfigType> = get_configs();
-    var configsInside: Promise<ConfigTypeB> = get_configsInside();
     configs.then(async (config) => {
       configsInside.then(async (configInside) => {
         if (config.language == "zh-CN") {
@@ -85,8 +142,12 @@ export function Home() {
             document.getElementById(elementId)!.innerHTML = translatedText;
           }
         }
+        if (config.automatic_save == true) {
+
+        }
       });
     });
+    document.getElementById("toolbar-file-menu")!.style.display = "none";
   }
 
   // By BAIDU COMATE 2025.05.02
@@ -103,9 +164,8 @@ export function Home() {
               <img src={"Logo.png"} onError={() => throwError(2)} />
             </td>
             <td>
-              <button id={"toolbar-file"} onClick={toolbar_file_onclick}>
+              <button id={"toolbar-file"} onClick={toolbar_file_onclick} onBlur={toolbar_file_onblur}>
                 {en_usLPr.File}
-                <select id={"toolbar-file-select"} className={"non-display"}></select>
               </button>
             </td>
             <td>
@@ -115,6 +175,40 @@ export function Home() {
             </td>
           </tr>
         </table>
+      </div>
+      <div class={"menuA"} id={"toolbar-file-menu"}>
+        <button onClick={toolbar_file_select_new_file_onclick} id={"toolbar-file-new-button"}>
+          {en_usLPr["toolbar-file-select-new"]}
+        </button>
+        <br />
+        <button onClick={toolbar_file_new_window_onclick} id={"toolbar-file-new-window"}>
+          {en_usLPr.NewWindow}
+        </button>
+        <hr />
+        <button onClick={toolbar_file_open_file} id={"toolbar_file_open_file"}>
+          {en_usLPr.OpenFile}
+        </button>
+        <br />
+        <button onClick={toolbar_file_open_folder} id={"toolbar_file_open_folder"}>
+          {en_usLPr.OpenFolder}
+        </button>
+        <hr />
+        <button onClick={toolbar_file_save_file} id={"toolbar_file_save_file"}>
+          {en_usLPr.SaveFile}
+        </button>
+        <br />
+        <button id={"toolbar_file_save_as"} onClick={toolbar_file_save_as}>
+          {en_usLPr.SaveAs}
+        </button>
+        <br />
+        <button id={"toolbar_file_save_project"} onClick={toolbar_file_save_project}>
+          {en_usLPr.SaveProject}
+        </button>
+        <br />
+        <button id={"toolbar_file_option_automatic_save"} onClick={toolbar_file_option_automatic_save}>
+          {en_usLPr.AutomaticSave}
+          <span className={"menuF"} id={"toolbar_file_option_automatic_save_mark"}></span>
+        </button>
       </div>
     </div>
   );
