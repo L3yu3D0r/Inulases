@@ -1,10 +1,12 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use tauri_plugin_log::{Target, TargetKind};
 use std::fs::read_to_string;
 use serde_json::Value;
 use std::env;
 use std::fs;
+
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -75,13 +77,28 @@ fn change_configs(key: String, value: serde_json::Value) {
         .expect("code: R000007: Failed to write updated config to file");
 }
 
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_log::Builder::new().build())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![get_configs, get_configs_inside, change_configs])
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                .targets([
+                    Target::new(TargetKind::Stdout),
+                    Target::new(TargetKind::LogDir { file_name: None }),
+                    Target::new(TargetKind::Webview),
+                ])
+                .build(),
+        )
+        .invoke_handler(tauri::generate_handler![
+            get_configs,
+            get_configs_inside,
+            change_configs
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

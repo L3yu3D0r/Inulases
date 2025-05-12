@@ -8,5 +8,9 @@
     "SaveFile": "Save Current File",
     "SaveAs": "Save As",
     "SaveProject": "Save Project",
-    "AutomaticSave": "Automatic Save"
+    "AutomaticSave": "Automatic Save",
+    "AllSave": "Save All",
+    "OpenProject": "Open Project",
+    "Setting": "Settings",
+    "Exit": "Exit"
 }

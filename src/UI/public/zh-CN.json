@@ -8,5 +8,9 @@
     "SaveFile": "保存当前文件",
     "SaveAs": "另存为",
     "SaveProject": "保存项目",
-    "AutomaticSave": "自动保存"
+    "AutomaticSave": "自动保存",
+    "AllSave": "全部保存",
+    "OpenProject": "打开项目",
+    "Setting": "设置",
+    "Exit": "退出"
 }

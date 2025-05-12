@@ -45,4 +45,11 @@
 
 .menuF {
   float: right;
+  font-size: 21px;
+  margin-top: 1px;
+  margin-right: 3px;
+}
+
+#out_of_the_toolbar_menu_tr {
+  width: 40px;
 }

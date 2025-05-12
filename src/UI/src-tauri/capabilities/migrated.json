@@ -23,6 +23,8 @@
     "os:default",
     "dialog:default",
     "process:default",
-    "dialog:default"
+    "dialog:default",
+    "log:default",
+    "log:default"
   ]
 }

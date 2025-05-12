@@ -56,7 +56,7 @@ export function Home() {
 
   async function throwError(ec: number) {
     await message(ECT(ec).toString(), { title: "InulasesUI Error", kind: "error" });
-    exit(1);
+    exit(3);
   }
 
   function toolbar_file_onclick() {
@@ -109,6 +109,7 @@ export function Home() {
 
   function toolbar_file_option_automatic_save() {
     var atmksave_mark = document.getElementById("toolbar_file_option_automatic_save_mark")!;
+
     if (atmksave_mark.innerHTML == "") {
       atmksave_mark.innerHTML = "✓";
       change_configs("automatic_save", true);
@@ -117,6 +118,29 @@ export function Home() {
       change_configs("automatic_save", false);
     }
     // invoke("option_automatic_save");
+  }
+
+  function all_save() {
+    // invoke("all_save");
+    message("All Save", { title: "InulasesUI", kind: "info" });
+  }
+
+  function open_project() {
+    // invoke("open_project");
+    message("Open Project", { title: "InulasesUI", kind: "info" });
+  }
+
+  function setting_button() {
+    // invoke("setting_button");
+    message("Setting", { title: "InulasesUI", kind: "info" });
+  }
+
+  function exit_program() {
+    exit(0);
+  }
+
+  function CandZ() {
+    message("CandZ", { title: "InulasesUI", kind: "info" });
   }
 
   function init() {
@@ -130,7 +154,8 @@ export function Home() {
             const elementId = configInside.language_configs.langauge_elements_id[i];
             const key = configInside.language_configs[elementId] as string;
             const translatedText = zh_cnLP[key];
-            document.getElementById(elementId)!.innerHTML = translatedText;
+            // TODO: Only fix the text
+            document.getElementById(elementId)!.innerText = translatedText;
           }
         }
         else if (config.language == "en-US") {
@@ -139,7 +164,7 @@ export function Home() {
             const elementId = configInside.language_configs.langauge_elements_id[i];
             const key = configInside.language_configs[elementId] as string;
             const translatedText = en_usLP[key];
-            document.getElementById(elementId)!.innerHTML = translatedText;
+            document.getElementById(elementId)!.textContent = translatedText;
           }
         }
         if (config.automatic_save == true) {
@@ -177,7 +202,7 @@ export function Home() {
         </table>
       </div>
       <div class={"menuA"} id={"toolbar-file-menu"}>
-        <button onClick={toolbar_file_select_new_file_onclick} id={"toolbar-file-new-button"}>
+        <button onClick={toolbar_file_select_new_file_onclick} id={"toolbar-file-select-new"}>
           {en_usLPr["toolbar-file-select-new"]}
         </button>
         <br />
@@ -185,12 +210,16 @@ export function Home() {
           {en_usLPr.NewWindow}
         </button>
         <hr />
-        <button onClick={toolbar_file_open_file} id={"toolbar_file_open_file"}>
+        <button onClick={toolbar_file_open_file} id={"toolbar-file-open-file"}>
           {en_usLPr.OpenFile}
         </button>
         <br />
         <button onClick={toolbar_file_open_folder} id={"toolbar_file_open_folder"}>
           {en_usLPr.OpenFolder}
+        </button>
+        <br />
+        <button id={"open_project"} onClick={open_project}>
+          {en_usLPr.OpenProject}
         </button>
         <hr />
         <button onClick={toolbar_file_save_file} id={"toolbar_file_save_file"}>
@@ -207,8 +236,20 @@ export function Home() {
         <br />
         <button id={"toolbar_file_option_automatic_save"} onClick={toolbar_file_option_automatic_save}>
           {en_usLPr.AutomaticSave}
-          <span className={"menuF"} id={"toolbar_file_option_automatic_save_mark"}></span>
         </button>
+        <span className={"menuF"} id={"toolbar_file_option_automatic_save_mark"}></span>
+        <br />
+        <button id={"all_save"} onClick={all_save}>{en_usLPr.AllSave}</button>
+        <hr />
+        <button id={"setting_button"} onClick={setting_button}></button>
+        <hr />
+        <hr />
+        <button id={"exit"} onClick={exit_program}>
+          {en_usLPr.Exit}
+        </button>
+      </div>
+      <div class={"menuA"} id={"toolbar-edit-menu"}>
+        <button id={"CandZ"} onClick={CandZ}></button>
       </div>
     </div>
   );

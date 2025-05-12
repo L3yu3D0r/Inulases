@@ -1,5 +1,5 @@
 {
-  "configfileposition": "../../kernel/configInside.json",
+  "configfileposition": "../../kernel/config.json",
   "language_configs": {
     "langauge_elements_id": [
       "toolbar-file",
@@ -11,7 +11,11 @@
       "toolbar_file_save_file",
       "toolbar_file_save_as",
       "toolbar_file_save_project",
-      "toolbar_file_option_automatic_save"
+      "toolbar_file_option_automatic_save",
+      "all_save",
+      "open_project",
+      "setting_button",
+      "exit"
     ],
     "toolbar-edit": "Edit",
     "toolbar-file": "File",
@@ -19,9 +23,13 @@
     "toolbar-file-open-file": "OpenFile",
     "toolbar-file-select-new": "toolbar-file-select-new",
     "toolbar_file_open_folder": "OpenFolder",
-    "toolbar_file_option_automatic_save": "AutomaticSave",
     "toolbar_file_save_as": "SaveAs",
     "toolbar_file_save_file": "SaveFile",
-    "toolbar_file_save_project": "SaveProject"
+    "toolbar_file_save_project": "SaveProject",
+    "toolbar_file_option_automatic_save": "AutomaticSave",
+    "all_save": "AllSave",
+    "open_project": "OpenProject",
+    "setting_button": "Setting",
+    "exit": "Exit"
   }
 }
