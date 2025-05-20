@@ -12,5 +12,13 @@
     "AllSave": "Save All",
     "OpenProject": "Open Project",
     "Setting": "Settings",
-    "Exit": "Exit"
+    "Exit": "Exit",
+    "CandZ": "Undo",
+    "CandY": "Redo",
+    "CandX": "Cut",
+    "CandC": "Copy",
+    "CandV": "Paste",
+    "CandA": "Select All",
+    "CopyAs": "Copy As",
+    "CopyLine": "Copy Line"
 }

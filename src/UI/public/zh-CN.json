@@ -12,5 +12,12 @@
     "AllSave": "全部保存",
     "OpenProject": "打开项目",
     "Setting": "设置",
-    "Exit": "退出"
+    "Exit": "退出",
+    "CandZ": "撤销",
+    "CandY": "重做",
+    "CandX": "剪切",
+    "CandC": "复制",
+    "CandV": "粘贴",
+    "CandA": "全选",
+    "CopyAs": "复制为"
 }

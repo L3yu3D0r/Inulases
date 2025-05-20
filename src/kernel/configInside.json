@@ -15,7 +15,15 @@
       "all_save",
       "open_project",
       "setting_button",
-      "exit"
+      "exit",
+      "CandZ",
+      "CandY",
+      "CandX",
+      "CandC",
+      "CandV",
+      "CandA",
+      "CopyAs",
+      "CopyLine"
     ],
     "toolbar-edit": "Edit",
     "toolbar-file": "File",
@@ -30,6 +38,19 @@
     "all_save": "AllSave",
     "open_project": "OpenProject",
     "setting_button": "Setting",
-    "exit": "Exit"
+    "exit": "Exit",
+    "CandZ": "CandZ",
+    "CandY": "CandY",
+    "CandX": "CandX",
+    "CandC": "CandC",
+    "CandV": "CandV",
+    "CandA": "CandA",
+    "CopyAs": "CopyAs",
+    "CopyLine": "CopyLine"
+  },
+  "menu_configs": {
+    "menu_elements_id": {
+
+    }
   }
 }

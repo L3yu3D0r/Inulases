@@ -69,7 +69,7 @@ export function Home() {
   function toolbar_file_onblur() {
     setTimeout(() => {
       document.getElementById("toolbar-file-menu")!.style.display = "none";
-    }, 330);
+    }, 100);
   }
 
   function toolbar_file_select_new_file_onclick() {
@@ -139,8 +139,49 @@ export function Home() {
     exit(0);
   }
 
+  function toolbar_edit_onclick() {
+    document.documentElement.style.setProperty("--classmenuAleftpx",
+      document.getElementById("toolbar-edit")?.getBoundingClientRect().left + "px"
+    );
+    document.getElementById("toolbar-edit-menu")!.style.display = "block";
+  }
+
+  function toolbar_edit_onblur() {
+    setTimeout(() => {
+      document.getElementById("toolbar-edit-menu")!.style.display = "none";
+    }, 100);
+  }
+
   function CandZ() {
     message("CandZ", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CandY() {
+    message("CandY", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CandX() {
+    message("CandX", { title: "InulasesUI", kind: "info" });
+  }
+  
+  function CandC() {
+    message("CandC", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CandV() {
+    message("CandV", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CandA() {
+    message("CandA", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CopyAs() {
+    message("CopyAs", { title: "InulasesUI", kind: "info" });
+  }
+
+  function CopyLine() {
+    message("CopyLine", { title: "InulasesUI", kind: "info" })
   }
 
   function init() {
@@ -173,6 +214,7 @@ export function Home() {
       });
     });
     document.getElementById("toolbar-file-menu")!.style.display = "none";
+    document.getElementById("toolbar-edit-menu")!.style.display = "none";
   }
 
   // By BAIDU COMATE 2025.05.02
@@ -194,7 +236,7 @@ export function Home() {
               </button>
             </td>
             <td>
-              <button id={"toolbar-edit"}>
+              <button id={"toolbar-edit"} onClick={toolbar_edit_onclick} onBlur={toolbar_edit_onblur}>
                 {en_usLPr.Edit}
               </button>
             </td>
@@ -249,7 +291,22 @@ export function Home() {
         </button>
       </div>
       <div class={"menuA"} id={"toolbar-edit-menu"}>
-        <button id={"CandZ"} onClick={CandZ}></button>
+        <button id={"CandZ"} onClick={CandZ}>{en_usLPr.CandZ}</button>
+        <br />
+        <button id={"CandY"} onClick={CandY}>{en_usLPr.CandY}</button>
+        <hr />
+        <button id={"CandX"} onClick={CandX}>{en_usLPr.CandX}</button>
+        <br />
+        <button id={"CandC"} onClick={CandC}>{en_usLPr.CandC}</button>
+        <br />
+        <button id={"CandV"} onClick={CandV}>{en_usLPr.CandV}</button>
+        <br />
+        <button id={"CandA"} onClick={CandA}>{en_usLPr.CandA}</button>
+        <br />
+        <button id={"CopyAs"} onClick={CopyAs}>{en_usLPr.CopyAs}</button>
+        <br />
+        <button id={"CopyLine"} onClick={CopyLine}>{en_usLPr.CopyLine}</button>
+
       </div>
     </div>
   );
