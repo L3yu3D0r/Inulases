@@ -20,5 +20,6 @@
     "CandV": "Paste",
     "CandA": "Select All",
     "CopyAs": "Copy As",
-    "CopyLine": "Copy Line"
+    "CopyLine": "Copy Line",
+    "CandF": "Search"
 }

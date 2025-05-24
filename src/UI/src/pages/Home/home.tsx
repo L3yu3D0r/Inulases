@@ -2,6 +2,7 @@ import { message } from "@tauri-apps/plugin-dialog";
 import zh_cnLPr from "../../../public/zh-CN.json";
 import en_usLPr from "../../../public/en-US.json";
 import { exit } from "@tauri-apps/plugin-process";
+import { Window } from '@tauri-apps/api/window';
 import { invoke } from "@tauri-apps/api/core";
 import { useEffect } from "preact/hooks";
 import "./home.css";
@@ -163,7 +164,7 @@ export function Home() {
   function CandX() {
     message("CandX", { title: "InulasesUI", kind: "info" });
   }
-  
+
   function CandC() {
     message("CandC", { title: "InulasesUI", kind: "info" });
   }
@@ -182,6 +183,10 @@ export function Home() {
 
   function CopyLine() {
     message("CopyLine", { title: "InulasesUI", kind: "info" })
+  }
+
+  function CandF() {
+    message("CandF", { title: "InulasesUI", kind: "info" });
   }
 
   function init() {
@@ -213,6 +218,10 @@ export function Home() {
         }
       });
     });
+    const appWindow = new Window('main');
+    document.getElementById('titlebar-minimize')?.addEventListener('click', () => appWindow.minimize());
+    document.getElementById('titlebar-maximize')?.addEventListener('click', () => appWindow.toggleMaximize());
+    document.getElementById('titlebar-close')?.addEventListener('click', () => appWindow.close());
     document.getElementById("toolbar-file-menu")!.style.display = "none";
     document.getElementById("toolbar-edit-menu")!.style.display = "none";
   }
@@ -224,6 +233,23 @@ export function Home() {
 
   return (
     <div id={"mainDiv"}>
+      <div data-tauri-drag-region class="titlebar">
+        <div class="titlebar-button" id="titlebar-minimize">
+          <img
+            src="https://api.iconify.design/mdi:window-minimize.svg"
+            alt="minimize"
+          />
+        </div>
+        <div class="titlebar-button" id="titlebar-maximize">
+          <img
+            src="https://api.iconify.design/mdi:window-maximize.svg"
+            alt="maximize"
+          />
+        </div>
+        <div class="titlebar-button" id="titlebar-close">
+          <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+        </div>
+      </div>
       <div id={"toolbardiv"}>
         <table id={"toolbar"}>
           <tr>
@@ -306,7 +332,8 @@ export function Home() {
         <button id={"CopyAs"} onClick={CopyAs}>{en_usLPr.CopyAs}</button>
         <br />
         <button id={"CopyLine"} onClick={CopyLine}>{en_usLPr.CopyLine}</button>
-
+        <hr />
+        <button id={"CandF"} onClick={CandF}>{en_usLPr.CandF}</button>
       </div>
     </div>
   );

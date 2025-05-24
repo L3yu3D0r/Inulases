@@ -23,7 +23,8 @@
       "CandV",
       "CandA",
       "CopyAs",
-      "CopyLine"
+      "CopyLine",
+      "CandF"
     ],
     "toolbar-edit": "Edit",
     "toolbar-file": "File",
@@ -46,7 +47,8 @@
     "CandV": "CandV",
     "CandA": "CandA",
     "CopyAs": "CopyAs",
-    "CopyLine": "CopyLine"
+    "CopyLine": "CopyLine",
+    "CandF": "CandF"
   },
   "menu_configs": {
     "menu_elements_id": {

@@ -19,5 +19,7 @@
     "CandC": "复制",
     "CandV": "粘贴",
     "CandA": "全选",
-    "CopyAs": "复制为"
+    "CopyAs": "复制为",
+    "CopyLine": "复制行",
+    "CandF": "查找"
 }
