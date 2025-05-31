@@ -2,9 +2,9 @@ import { message } from "@tauri-apps/plugin-dialog";
 import zh_cnLPr from "../../../public/zh-CN.json";
 import en_usLPr from "../../../public/en-US.json";
 import { exit } from "@tauri-apps/plugin-process";
+import { useEffect, useRef } from "preact/hooks";
 import { Window } from '@tauri-apps/api/window';
 import { invoke } from "@tauri-apps/api/core";
-import { useEffect } from "preact/hooks";
 import "./home.css";
 
 export function Home() {
@@ -26,6 +26,9 @@ export function Home() {
   interface LanguagePackage {
     [key: string]: string;
   }
+
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const appWindow = new Window('main');
 
   async function get_configs(): Promise<ConfigType> {
     return JSON.parse(await invoke("get_configs"));
@@ -189,9 +192,23 @@ export function Home() {
     message("CandF", { title: "InulasesUI", kind: "info" });
   }
 
+  function handleClick() {
+    appWindow.isMaximized().then((maximized) => {
+      if (!maximized && imgRef.current) {
+        imgRef.current.src = "window.png"
+      } else {
+        imgRef.current!.src = "https://api.iconify.design/mdi:window-maximize.svg"; 
+      }
+    });
+    appWindow.toggleMaximize();
+  }
+
   function init() {
     var zh_cnLP: LanguagePackage = zh_cnLPr;
     var en_usLP: LanguagePackage = en_usLPr;
+    // Change from https://tauri.app/zh-cn/learn/window-customization/
+    document.getElementById('titlebar-minimize')?.addEventListener('click', () => appWindow.minimize());
+    document.getElementById('titlebar-close')?.addEventListener('click', () => appWindow.close());
     configs.then(async (config) => {
       configsInside.then(async (configInside) => {
         if (config.language == "zh-CN") {
@@ -218,10 +235,6 @@ export function Home() {
         }
       });
     });
-    const appWindow = new Window('main');
-    document.getElementById('titlebar-minimize')?.addEventListener('click', () => appWindow.minimize());
-    document.getElementById('titlebar-maximize')?.addEventListener('click', () => appWindow.toggleMaximize());
-    document.getElementById('titlebar-close')?.addEventListener('click', () => appWindow.close());
     document.getElementById("toolbar-file-menu")!.style.display = "none";
     document.getElementById("toolbar-edit-menu")!.style.display = "none";
   }
@@ -241,100 +254,14 @@ export function Home() {
           />
         </div>
         <div class="titlebar-button" id="titlebar-maximize">
-          <img
-            src="https://api.iconify.design/mdi:window-maximize.svg"
-            alt="maximize"
-          />
+          <img ref={imgRef} src="https://api.iconify.design/mdi:window-maximize.svg" alt="maximize" onClick={handleClick} />
         </div>
         <div class="titlebar-button" id="titlebar-close">
           <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
         </div>
       </div>
-      <div id={"toolbardiv"}>
-        <table id={"toolbar"}>
-          <tr>
-            <td id={"toolbar-logo"}>
-              <img src={"Logo.png"} onError={() => throwError(2)} />
-            </td>
-            <td>
-              <button id={"toolbar-file"} onClick={toolbar_file_onclick} onBlur={toolbar_file_onblur}>
-                {en_usLPr.File}
-              </button>
-            </td>
-            <td>
-              <button id={"toolbar-edit"} onClick={toolbar_edit_onclick} onBlur={toolbar_edit_onblur}>
-                {en_usLPr.Edit}
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class={"menuA"} id={"toolbar-file-menu"}>
-        <button onClick={toolbar_file_select_new_file_onclick} id={"toolbar-file-select-new"}>
-          {en_usLPr["toolbar-file-select-new"]}
-        </button>
-        <br />
-        <button onClick={toolbar_file_new_window_onclick} id={"toolbar-file-new-window"}>
-          {en_usLPr.NewWindow}
-        </button>
-        <hr />
-        <button onClick={toolbar_file_open_file} id={"toolbar-file-open-file"}>
-          {en_usLPr.OpenFile}
-        </button>
-        <br />
-        <button onClick={toolbar_file_open_folder} id={"toolbar_file_open_folder"}>
-          {en_usLPr.OpenFolder}
-        </button>
-        <br />
-        <button id={"open_project"} onClick={open_project}>
-          {en_usLPr.OpenProject}
-        </button>
-        <hr />
-        <button onClick={toolbar_file_save_file} id={"toolbar_file_save_file"}>
-          {en_usLPr.SaveFile}
-        </button>
-        <br />
-        <button id={"toolbar_file_save_as"} onClick={toolbar_file_save_as}>
-          {en_usLPr.SaveAs}
-        </button>
-        <br />
-        <button id={"toolbar_file_save_project"} onClick={toolbar_file_save_project}>
-          {en_usLPr.SaveProject}
-        </button>
-        <br />
-        <button id={"toolbar_file_option_automatic_save"} onClick={toolbar_file_option_automatic_save}>
-          {en_usLPr.AutomaticSave}
-        </button>
-        <span className={"menuF"} id={"toolbar_file_option_automatic_save_mark"}></span>
-        <br />
-        <button id={"all_save"} onClick={all_save}>{en_usLPr.AllSave}</button>
-        <hr />
-        <button id={"setting_button"} onClick={setting_button}></button>
-        <hr />
-        <hr />
-        <button id={"exit"} onClick={exit_program}>
-          {en_usLPr.Exit}
-        </button>
-      </div>
-      <div class={"menuA"} id={"toolbar-edit-menu"}>
-        <button id={"CandZ"} onClick={CandZ}>{en_usLPr.CandZ}</button>
-        <br />
-        <button id={"CandY"} onClick={CandY}>{en_usLPr.CandY}</button>
-        <hr />
-        <button id={"CandX"} onClick={CandX}>{en_usLPr.CandX}</button>
-        <br />
-        <button id={"CandC"} onClick={CandC}>{en_usLPr.CandC}</button>
-        <br />
-        <button id={"CandV"} onClick={CandV}>{en_usLPr.CandV}</button>
-        <br />
-        <button id={"CandA"} onClick={CandA}>{en_usLPr.CandA}</button>
-        <br />
-        <button id={"CopyAs"} onClick={CopyAs}>{en_usLPr.CopyAs}</button>
-        <br />
-        <button id={"CopyLine"} onClick={CopyLine}>{en_usLPr.CopyLine}</button>
-        <hr />
-        <button id={"CandF"} onClick={CandF}>{en_usLPr.CandF}</button>
-      </div>
+      
+      
     </div>
   );
 }

@@ -6,7 +6,7 @@ use std::fs::read_to_string;
 use serde_json::Value;
 use std::env;
 use std::fs;
-
+use tauri::menu::{MenuBuilder};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -77,6 +77,11 @@ fn change_configs(key: String, value: serde_json::Value) {
         .expect("code: R000007: Failed to write updated config to file");
 }
 
+#[tauri::command]
+fn change_window_maximize_icon() {
+
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 fn main() {
     tauri::Builder::default()
@@ -99,6 +104,16 @@ fn main() {
             get_configs_inside,
             change_configs
         ])
+        .setup(|app| {
+            let menu = MenuBuilder::new(app)
+                .text("open", "Open")
+                .text("close", "Close")
+                .build()?;
+
+            app.set_menu(menu)?;
+
+            Ok(())
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
